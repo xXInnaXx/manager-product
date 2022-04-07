@@ -41,38 +41,38 @@ class ManagerTest {
     void searchSmartphoneByNamePart() {
         // given
         Manager manager = new Manager(new ProductRepository());
-        Product Smartphone = new Smartphone(5, "Iphone11", 50000, "Apple");
-        Product[] Smartphones = {Smartphone};
+        Product smartphone = new Smartphone(5, "Iphone11", 50000, "Apple");
+        Product[] Smartphones = {smartphone};
         manager.saveAllProducts(Smartphones);
 
         Product[] foundSmartphones = manager.searchBy("Iphone11");
         assertEquals(foundSmartphones.length, 1);
-        assertEquals(foundSmartphones[0], Smartphone);
+        assertEquals(foundSmartphones[0], smartphone);
     }
 
     @Test
     void searchSmartphoneByCreator() {
         // given
         Manager manager = new Manager(new ProductRepository());
-        Product Smartphone = new Smartphone(5, "Iphone11", 50000, "Apple");
-        Product[] Smartphones = {Smartphone};
+        Product smartphone = new Smartphone(5, "Iphone11", 50000, "Apple");
+        Product[] Smartphones = {smartphone};
         manager.saveAllProducts(Smartphones);
 
         Product[] foundSmartphones = manager.searchBy("Apple");
         assertEquals(foundSmartphones.length, 1);
-        assertEquals(foundSmartphones[0], Smartphone);
+        assertEquals(foundSmartphones[0], smartphone);
     }
 
     @Test
-    void searchProductByName() {
+    void shouldNotSearchProductByIncorrectName() {
         // given
         Manager manager = new Manager(new ProductRepository());
-        Product Smartphone = new Smartphone(5, "Iphone11", 50000, "Apple");
-        Product[] Smartphones = {Smartphone};
-        manager.saveAllProducts(Smartphones);
+        Product product = new Product(5, "Iphone11", 50000);
+        Product[] products = {product};
+        manager.saveAllProducts(products);
 
-        Product[] foundSmartphones = manager.searchBy("Pen");
-        assertEquals(foundSmartphones.length, 0);
-        assertEquals(foundSmartphones[0], Smartphone);
+        Product[] foundProducts = manager.searchBy("Pen");
+        assertEquals(foundProducts.length, 0);
+
     }
 }
